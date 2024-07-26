@@ -1,0 +1,6 @@
+[
+    {
+        "name": "panya",
+        "healthcheck_url": "localhost:8083/panya/healthcheck"
+    }
+]
