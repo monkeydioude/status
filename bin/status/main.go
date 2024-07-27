@@ -37,7 +37,7 @@ func main() {
 		c.Next()
 	})
 	// define routes
-	r.GET("/", handler.Index(config))
+	r.GET("/status", handler.Index(config))
 
 	// lezzgo
 	r.Run("0.0.0.0:8082")
