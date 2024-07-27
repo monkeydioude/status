@@ -40,5 +40,5 @@ func main() {
 	r.GET("/status", handler.Index(config))
 
 	// lezzgo
-	r.Run("0.0.0.0:8082")
+	r.Run("0.0.0.0:8086")
 }
