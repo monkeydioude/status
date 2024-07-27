@@ -2,5 +2,17 @@
     {
         "name": "panya",
         "healthcheck_url": "localhost:8083/panya/healthcheck"
+    },
+    {
+        "name": "bakery",
+        "healthcheck_url": "localhost:8084/bakery/healthcheck"
+    },
+    {
+        "name": "oven",
+        "healthcheck_url": "localhost:3031/oven/healthcheck"
+    },
+    {
+        "name": "patishie",
+        "healthcheck_url": "localhost:8085/patishie/healthcheck"
     }
 ]
