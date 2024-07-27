@@ -2,7 +2,7 @@
 <html class="bg-slate-900 text-cyan-100">
 <head>
 	<script src="https://cdn.tailwindcss.com"></script>
-	<link href="/resources/main.css" rel="stylesheet" />
+	<link href="/status/resources/main.css" rel="stylesheet" />
 </head>
 	<body>
 		<div class="main m-auto w-4/5 flex flex-col">
