@@ -28,7 +28,7 @@ func main() {
 	}
 
 	// allow to reach resources
-	r.Static("/resources/", "./front/resources")
+	r.Static("/status/resources/", "./front/resources")
 	// disable cache for static resources
 	r.Use(func(c *gin.Context) {
 		if strings.HasPrefix(c.Request.URL.Path, "/resources/") {
