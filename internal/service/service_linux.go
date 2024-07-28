@@ -19,9 +19,13 @@ func GetServiceStatus(serviceName string) (string, error) {
 	// Filter out lines containing `CGroup:`
 	var result strings.Builder
 	scanner := bufio.NewScanner(&out)
+	cGroupFlag := false
 	for scanner.Scan() {
 		line := scanner.Text()
-		if !strings.Contains(line, "CGroup:") {
+		if strings.Contains(line, "CGroup:") {
+			cGroupFlag = true
+		}
+		if !cGroupFlag {
 			result.WriteString(line + "\n")
 		}
 	}
