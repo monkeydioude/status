@@ -1,1 +1,1 @@
-# Dashboard for a quick check of localhost service's status
+# Dashboard for a quick check of localhost service' status
