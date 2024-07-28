@@ -22,6 +22,9 @@ func GetServiceStatus(serviceName string) (string, error) {
 	cGroupFlag := false
 	for scanner.Scan() {
 		line := scanner.Text()
+		if strings.Contains(line, "Main PID:") {
+			continue
+		}
 		if strings.Contains(line, "CGroup:") {
 			cGroupFlag = true
 		}
