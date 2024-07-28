@@ -8,7 +8,7 @@ import (
 )
 
 func GetServiceStatus(serviceName string) (string, error) {
-	cmd := exec.Command("systemctl", "status", serviceName, "-n", "0")
+	cmd := exec.Command("systemctl", "status", serviceName)
 	var out bytes.Buffer
 	cmd.Stdout = &out
 	err := cmd.Run()
@@ -24,6 +24,9 @@ func GetServiceStatus(serviceName string) (string, error) {
 		line := scanner.Text()
 		if strings.Contains(line, "CGroup:") {
 			cGroupFlag = true
+		}
+		if line == "\n" || line == "" {
+			cGroupFlag = false
 		}
 		if !cGroupFlag {
 			result.WriteString(line + "\n")
