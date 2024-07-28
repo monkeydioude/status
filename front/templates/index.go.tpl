@@ -14,7 +14,8 @@
 					<div class="flex w-full">
 						<div class="flex flex-col w-full">
 							<div class="px-2 flex grow">Healthcheck</div>
-							<div class="px-2" data-healthcheck-message>{{ .Message }}</div>
+							<div class="px-2">{{ .Message }}</div>
+							<div class="px-2">{{ .Status }}</div>
 						</div>
 						<div class="content-center justify-center px-2 {{ if eq .Health "OK" }}text-green-500{{ else }}text-red-500{{ end }} " data-healthcheck-status>{{ .Health }}</div>
 					</div>

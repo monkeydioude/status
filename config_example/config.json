@@ -1,18 +1,22 @@
 [
     {
         "name": "panya",
-        "healthcheck_url": "localhost:8083/panya/healthcheck"
+        "healthcheck_url": "localhost:8083/panya/healthcheck",
+        "daemon": true
     },
     {
         "name": "bakery",
-        "healthcheck_url": "localhost:8084/bakery/healthcheck"
+        "healthcheck_url": "localhost:8084/bakery/healthcheck",
+        "daemon": false
     },
     {
         "name": "oven",
-        "healthcheck_url": "localhost:3031/oven/healthcheck"
+        "healthcheck_url": "localhost:3031/oven/healthcheck",
+        "daemon": true
     },
     {
         "name": "patishie",
-        "healthcheck_url": "localhost:8085/patishie/healthcheck"
+        "healthcheck_url": "localhost:8085/patishie/healthcheck",
+        "daemon": true
     }
 ]
