@@ -4,7 +4,6 @@ import (
 	"flag"
 	"status/internal/handler"
 	"status/internal/status"
-	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -31,9 +30,10 @@ func main() {
 	r.Static("/status/resources/", "./front/resources")
 	// disable cache for static resources
 	r.Use(func(c *gin.Context) {
-		if strings.HasPrefix(c.Request.URL.Path, "/resources/") {
-			c.Header("Cache-Control", "private, max-age=0")
-		}
+		c.Header("Cache-Control", "no-cache")
+		// if strings.HasPrefix(c.Request.URL.Path, "/resources/") {
+		// 	c.Header("Cache-Control", "private, max-age=1")
+		// }
 		c.Next()
 	})
 	// define routes
