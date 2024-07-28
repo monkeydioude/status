@@ -7,7 +7,7 @@
     {
         "name": "bakery",
         "healthcheck_url": "localhost:8084/bakery/healthcheck",
-        "daemon": false
+        "daemon": true
     },
     {
         "name": "oven",
