@@ -15,7 +15,7 @@
 					<div class="flex w-full">
 						<div data-status class="flex flex-col w-full">
 							<div class="px-2 flex grow">Healthcheck</div>
-							<div class="px-2">{{ .Message }}</div>
+							<div class="px-2">{{ if ne .Message "" }}<pre class="formatted-pre w-full p-2 border-2 border-slate-800 mb-2 rounded">{{ .Message }}</pre> {{ end }}</div>
 							{{ if ne .Status "" }}
 							<div class="px-2">
 								<div class="marker">Status</div>
