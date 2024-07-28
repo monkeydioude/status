@@ -10,12 +10,12 @@
 			<div class="m-auto bg-slate-800 w-full text-center rounded">Status</div>
 			{{ range .}}
 			<div class="flex m-auto w-full mt-1" data-service-name="{{ .Name }}">
-				<h2 class="w-1/3 bg-cyan-900 rounded-l px-2 text-cyan-200 flex items-center">{{ .Name }}</h2>
-				<div class="w-full flex flex-col bg-cyan-800 rounded-r">
-					<div class="flex w-full">
-						<div data-status class="flex flex-col w-full">
+				<h2 class="w-1/4 bg-cyan-900 rounded-l px-2 text-cyan-200 flex items-center">{{ .Name }}</h2>
+				<div class="w-3/4 flex flex-col bg-cyan-800 rounded-r">
+					<div class="flex w-100">
+						<div data-status class="flex grow flex-col">
 							<div class="px-2 flex grow">Healthcheck</div>
-							<div class="px-2">{{ if ne .Message "" }}<pre class="formatted-pre w-full p-2 border-2 border-slate-800 mb-2 rounded">{{ .Message }}</pre> {{ end }}</div>
+							<div class="px-2">{{ if ne .Message "" }}<pre class="formatted-pre p-2 border-2 border-slate-800 mb-2 rounded">{{ .Message }}</pre> {{ end }}</div>
 							{{ if ne .Status "" }}
 							<div class="px-2">
 								<div class="marker">Status</div>
