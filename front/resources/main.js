@@ -1,4 +1,5 @@
 window.addEventListener("load", () => {
+    setTimeout(() => location.reload(), 60000)
     document
         .querySelectorAll("[data-status]")
         .forEach((elm) => {

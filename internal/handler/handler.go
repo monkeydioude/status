@@ -27,7 +27,7 @@ func Index(config []status.Config) func(*gin.Context) {
 				healthchecks = append(healthchecks, service.ServiceHealth{
 					Name:    serviceConf.Name,
 					Health:  "KO",
-					Message: health.Message + "\n\n" + err.Error(),
+					Message: health.Message + "\n" + err.Error(),
 				})
 				continue
 			}
@@ -36,7 +36,7 @@ func Index(config []status.Config) func(*gin.Context) {
 				healthchecks = append(healthchecks, service.ServiceHealth{
 					Name:    serviceConf.Name,
 					Health:  "KO",
-					Message: health.Message + "\n\n" + err.Error(),
+					Message: health.Message + "\n" + err.Error(),
 					// Message: err.Error(),
 				})
 				continue
