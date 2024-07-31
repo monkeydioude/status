@@ -18,5 +18,15 @@
         "name": "patishie",
         "healthcheck_url": "localhost:8085/patishie/healthcheck",
         "daemon": true
+    },
+    {
+        "name": "josuke",
+        "healthcheck_url": "localhost:8082/josuke/healthcheck",
+        "daemon": true
+    },
+    {
+        "name": "capybara",
+        "healthcheck_url": "localhost:80/healthcheck",
+        "daemon": true
     }
 ]
