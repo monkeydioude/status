@@ -3,30 +3,5 @@
         "name": "panya",
         "healthcheck_url": "localhost:8083/panya/healthcheck",
         "daemon": true
-    },
-    {
-        "name": "bakery",
-        "healthcheck_url": "localhost:8084/bakery/healthcheck",
-        "daemon": true
-    },
-    {
-        "name": "oven",
-        "healthcheck_url": "localhost:3031/oven/healthcheck",
-        "daemon": true
-    },
-    {
-        "name": "patishie",
-        "healthcheck_url": "localhost:8085/patishie/healthcheck",
-        "daemon": true
-    },
-    {
-        "name": "josuke",
-        "healthcheck_url": "localhost:8082/josuke/healthcheck",
-        "daemon": true
-    },
-    {
-        "name": "capybara",
-        "healthcheck_url": "localhost:80/healthcheck",
-        "daemon": true
     }
 ]
