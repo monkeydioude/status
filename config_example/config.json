@@ -3,5 +3,10 @@
         "name": "panya",
         "healthcheck_url": "localhost:8083/panya/healthcheck",
         "daemon": true
+    },
+    {
+        "name": "capybara",
+        "healthcheck_url": "https://4thehoard.com/healthcheck",
+        "daemon": true
     }
 ]

@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"status/internal/service"
 	"status/internal/status"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -22,7 +23,11 @@ func Index(config []status.Config) func(*gin.Context) {
 					health.Message = err.Error()
 				}
 			}
-			res, err := http.Get("http://" + serviceConf.HealthcheckUrl)
+			url := serviceConf.HealthcheckUrl
+			if !strings.HasPrefix(url, "http") {
+				url = "http://" + serviceConf.HealthcheckUrl
+			}
+			res, err := http.Get(url)
 			if err != nil {
 				healthchecks = append(healthchecks, service.ServiceHealth{
 					Name:    serviceConf.Name,
