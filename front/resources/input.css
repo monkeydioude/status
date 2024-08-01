@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    font-size: 1.5rem;
+}
+div[data-status] {
+    cursor: pointer;
+}
+div[data-status].full-status .marker {
+    max-height: 0;
+    overflow: hidden;
+}
+div[data-status].full-status .text {
+    max-height: 100%;
+    overflow: auto;
+}
+div[data-status] .marker {
+    max-height: 100%;
+}
+div[data-status] .marker:AFTER {
+    content: ' \276F';
+}
+
+div[data-status] .text {
+    max-height: 0;
+    overflow: hidden;
+}
+.text {
+    white-space: pre-wrap;
+    overflow: scroll;
+}
+
+.formatted-pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    box-sizing: border-box;
+}
