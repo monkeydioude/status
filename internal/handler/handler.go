@@ -11,6 +11,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+const (
+	OK   = "OK"
+	KO   = "KO"
+	NANI = "??"
+)
+
 func Index(config []status.Config) func(*gin.Context) {
 	return func(c *gin.Context) {
 		healthchecks := make([]service.ServiceHealth, 0)
@@ -18,7 +24,7 @@ func Index(config []status.Config) func(*gin.Context) {
 		for _, serviceConf := range config {
 			health := service.ServiceHealth{
 				Name:   serviceConf.Name,
-				Health: "KO",
+				Health: KO,
 			}
 			// trying to fetch the task's status.
 			// works only for linux atm.
@@ -38,7 +44,7 @@ func Index(config []status.Config) func(*gin.Context) {
 			if err != nil {
 				healthchecks = append(healthchecks, service.ServiceHealth{
 					Name:    serviceConf.Name,
-					Health:  "KO",
+					Health:  KO,
 					Message: health.Message + "\n" + err.Error(),
 				})
 				continue
@@ -49,22 +55,27 @@ func Index(config []status.Config) func(*gin.Context) {
 			if err != nil {
 				healthchecks = append(healthchecks, service.ServiceHealth{
 					Name:    serviceConf.Name,
+					Health:  NANI,
 					Message: health.Message + "\n" + err.Error(),
 				})
+				continue
 			}
 			err = json.Unmarshal(body, &health)
 			// should not answer KO if there's an issue with unmarshalling.
 			if err != nil {
 				healthchecks = append(healthchecks, service.ServiceHealth{
-					Name: serviceConf.Name,
+					Name:    serviceConf.Name,
+					Health:  NANI,
+					Message: health.Message + "\n" + err.Error(),
 				})
+				continue
 			}
 
 			// a status code 200 is all that matters to be OK
 			if res.StatusCode != 200 {
-				health.Health = "KO"
+				health.Health = KO
 			} else {
-				health.Health = "OK"
+				health.Health = OK
 			}
 			healthchecks = append(healthchecks, health)
 		}
