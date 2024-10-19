@@ -6,15 +6,17 @@ import (
 	"status/internal/status"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func main() {
 	// init gin
 	r := gin.Default()
-
+	godotenv.Load()
 	// flag parsing
 	var configPath string
 	flag.StringVar(&configPath, "c", "", "/path/to/config.json")
+
 	flag.Parse()
 
 	// load templates
@@ -36,6 +38,7 @@ func main() {
 		// }
 		c.Next()
 	})
+	handler := handler.NewHandler()
 	// define routes
 	r.GET("/status", handler.Index(config))
 

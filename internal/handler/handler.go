@@ -1,7 +1,11 @@
 package handler
 
 import (
+	"crypto/sha256"
+	"crypto/subtle"
 	"encoding/json"
+	"errors"
+	"fmt"
 	"io"
 	"net/http"
 	"status/internal/service"
@@ -18,8 +22,44 @@ const (
 	NANI = "??"
 )
 
-func Index(config []status.Config) func(*gin.Context) {
+type Handler struct {
+	basicAuth service.BasicAuth
+}
+
+func NewHandler() *Handler {
+	return &Handler{
+		basicAuth: service.NewBasicAuth(),
+	}
+}
+
+func (h *Handler) CheckBasicAuth(r *http.Request, header func(string, string)) error {
+	if !h.basicAuth.IsSet {
+		return nil
+	}
+	header("WWW-Authenticate", `Basic realm="restricted", charset="UTF-8"`)
+
+	l, p, ok := r.BasicAuth()
+	if !ok {
+		return errors.New("no basic auth")
+	}
+	usernameHash := sha256.Sum256([]byte(l))
+	passwordHash := sha256.Sum256([]byte(p))
+	fmt.Printf("l: %s, p: %s, usernameHash: %x, passwordHash: %x, h.basicAuth.Login: %s, h.basicAuth.Password: %s\n", l, p, usernameHash, passwordHash, h.basicAuth.Login, h.basicAuth.Password)
+	usernameMatch := (subtle.ConstantTimeCompare(usernameHash[:], h.basicAuth.Login[:]) == 1)
+	passwordMatch := (subtle.ConstantTimeCompare(passwordHash[:], h.basicAuth.Password[:]) == 1)
+	if !usernameMatch || !passwordMatch {
+		return errors.New("username or password don't match")
+	}
+	return nil
+}
+
+func (h *Handler) Index(config []status.Config) func(*gin.Context) {
 	return func(c *gin.Context) {
+		if err := h.CheckBasicAuth(c.Request, c.Header); err != nil {
+			c.String(401, "Unauthorized: "+err.Error())
+			return
+		}
+
 		healthchecks := make([]service.ServiceHealth, 0)
 		var wg sync.WaitGroup
 		// looping through the service list
