@@ -810,6 +810,8 @@ div[data-status] .text {
   white-space: pre-wrap;
   word-wrap: break-word;
   box-sizing: border-box;
+  overflow-x: auto;
+  padding: 0;
 }
 
 .after\:absolute::after {
